@@ -1,7 +1,12 @@
 package main
 
-import "backend/internal/app"
+import (
+	"backend/internal/app"
+	"log"
+)
 
 func main() {
-	app.Run()
+	if err := app.Run(); err != nil {
+		log.Fatalln(err)
+	}
 }

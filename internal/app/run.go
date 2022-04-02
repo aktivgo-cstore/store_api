@@ -28,8 +28,9 @@ func Run() error {
 	productController := controllers.NewProductController(productService)
 
 	router.HandleFunc("/products", productController.GetProducts).Methods("GET")
+	router.HandleFunc("/products", productController.AddProduct).Methods("POST")
 
-	log.Println("Users api server started on port " + port)
+	log.Println("Store api server started on port " + port)
 	if err := http.ListenAndServe(":"+port, router); err != nil {
 		return err
 	}
