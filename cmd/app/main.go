@@ -1,8 +1,8 @@
 package main
 
 import (
-	"backend/internal/app"
 	"log"
+	"store_api/internal/app"
 )
 
 func main() {

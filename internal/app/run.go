@@ -1,14 +1,14 @@
 package app
 
 import (
-	"backend/internal/controllers"
-	"backend/internal/repository"
-	"backend/internal/service"
-	"backend/internal/storage/mysql"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"os"
+	"store_api/internal/controllers"
+	"store_api/internal/repository"
+	"store_api/internal/service"
+	"store_api/internal/storage/mysql"
 )
 
 var (

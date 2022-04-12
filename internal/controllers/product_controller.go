@@ -1,14 +1,14 @@
 package controllers
 
 import (
-	"backend/internal/dto"
-	"backend/internal/helpers"
-	"backend/internal/service"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"store_api/internal/dto"
+	"store_api/internal/helpers"
+	"store_api/internal/service"
 )
 
 type ProductController struct {
@@ -23,6 +23,17 @@ func NewProductController(productService *service.ProductService) *ProductContro
 
 func (pc *ProductController) GetProducts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+
+	token, er := service.GetToken(r.Header)
+	if er != nil {
+		helpers.ErrorResponse(w, er.Message, er.Status)
+		return
+	}
+
+	if er = service.CheckAccess(token); er != nil {
+		helpers.ErrorResponse(w, er.Message, er.Status)
+		return
+	}
 
 	products, er := pc.ProductService.GetProducts()
 	if er != nil {
@@ -43,6 +54,17 @@ func (pc *ProductController) GetProducts(w http.ResponseWriter, r *http.Request)
 
 func (pc *ProductController) AddProduct(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+
+	token, er := service.GetToken(r.Header)
+	if er != nil {
+		helpers.ErrorResponse(w, er.Message, er.Status)
+		return
+	}
+
+	if er = service.CheckAccess(token); er != nil {
+		helpers.ErrorResponse(w, er.Message, er.Status)
+		return
+	}
 
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {

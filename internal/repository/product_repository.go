@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"backend/internal/models"
 	"github.com/jmoiron/sqlx"
+	"store_api/internal/models"
 )
 
 type ProductRepository struct {

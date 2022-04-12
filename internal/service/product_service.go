@@ -1,11 +1,11 @@
 package service
 
 import (
-	"backend/internal/dto"
-	"backend/internal/errors"
-	"backend/internal/models"
-	"backend/internal/repository"
 	"log"
+	"store_api/internal/dto"
+	"store_api/internal/errors"
+	"store_api/internal/models"
+	"store_api/internal/repository"
 )
 
 type ProductService struct {
