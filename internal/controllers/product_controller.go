@@ -30,7 +30,7 @@ func (pc *ProductController) GetProducts(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	if er = service.CheckAccess(token); er != nil {
+	if er = service.CheckToken(token); er != nil {
 		helpers.ErrorResponse(w, er.Message, er.Status)
 		return
 	}

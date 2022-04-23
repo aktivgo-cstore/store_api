@@ -24,6 +24,16 @@ func GetToken(header http.Header) (string, *errors.ApiError) {
 	return token, nil
 }
 
+func CheckToken(tokenStr string) *errors.ApiError {
+	_, err := decodeToken(tokenStr)
+	if err != nil {
+		log.Println("unable to decode token:", err.Error())
+		return errors.UnauthorizedError()
+	}
+
+	return nil
+}
+
 func CheckAccess(tokenStr string) *errors.ApiError {
 	tokenData, err := decodeToken(tokenStr)
 	if err != nil {
