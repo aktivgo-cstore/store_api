@@ -5,5 +5,5 @@ type ProductData struct {
 	Description string
 	Price       int
 	Rating      float32
-	Image       interface{}
+	Image       string
 }
